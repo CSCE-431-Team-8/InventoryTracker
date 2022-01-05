@@ -1,5 +1,6 @@
 <h1>Inventory</h1>
-<button name="add-item-button" type="button">Add Item</button>
+<%# <button name="add-item-button" type="button" onclick="location.href='http://www.google.com'">Add Item</button> %>
+<%= button_to "Add Item", action: "add" %>
 <br>
 <br>
 <%= render partial: "item", collection: @items %>

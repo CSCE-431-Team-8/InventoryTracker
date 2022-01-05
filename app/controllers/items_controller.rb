@@ -3,6 +3,6 @@ class ItemsController < ApplicationController
         @items = ["The Martian", "Project Hail Mary", "Percy Jackso and the Lightning Theif"]
     end
 
-    def addItem
-        
+    # def addItem
+
 end

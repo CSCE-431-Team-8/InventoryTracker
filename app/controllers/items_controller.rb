@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
     public
 
+    #items will be objects instead of strings
     def items
         @items = ["The Martian", "Project Hail Mary", "Percy Jackson and the Lightning Theif"]
     end

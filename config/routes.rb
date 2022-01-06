@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
+  resources :items
+  root :to => redirect('/items')
 
-  root to: redirect('/items')
-
-  get 'items' => 'items#items'
-  post 'add' => 'items#add'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

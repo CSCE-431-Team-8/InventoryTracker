@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'pages#home'
+  root to: redirect('/items')
 
   get 'items' => 'items#items'
   post 'add' => 'items#add'

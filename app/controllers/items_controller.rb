@@ -52,13 +52,19 @@ class ItemsController < ApplicationController
   end
 
   def increase_quantity
-    @item = Item.find_by_product_id(params[:product_id])
-    @item.quantity_remaining += 1
-    @item.update(item_params)
-    render :nothing
+    @item = Item.find_by_id(params[:id])
+    @item.increment!(:quantity_remaining, 1)
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   def decrease_quantity
+    @item = Item.find_by_id(params[:id])
+    @item.increment!(:quantity_remaining, -1)
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   # DELETE /items/1
@@ -74,11 +80,11 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:product_id])
+      @item = Item.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:product_id, :name, :description, :quantity_remaining, :quantity_total, :rentable, :price)
+      params.require(:item).permit(:id, :name, :description, :quantity_remaining, :quantity_total, :rentable, :price)
     end
 end

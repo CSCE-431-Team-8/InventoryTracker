@@ -20,12 +20,12 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item.product_id %></td>
+        <td><%= item.id %></td>
         <td><%= item.name %></td>
         <td><%= item.description %></td>
         <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
-        <td><%= link_to "Increase", "increase_quantity/#{item.product_id}", :remote => true, :method => :put %></td>
-        <td><%#= button_to "Decrease", action "decrease_quantity" %></td>
+        <td><%= link_to "Increase", "increase_quantity/#{item.id}", :remote => true, :method => :put %></td>
+        <td><%= link_to "Decrease", "decrease_quantity/#{item.id}", :remote => true, :method => :put %></td>
         <td><%= item.rentable %></td>
         <td><%= item.price %></td>
         <td><%= link_to 'Show', item %></td>

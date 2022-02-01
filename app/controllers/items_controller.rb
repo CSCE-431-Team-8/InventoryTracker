@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :increase_quantity]
 
   # GET /items
   # GET /items.json
@@ -51,6 +51,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def increase_quantity
+    @item = Item.find_by_product_id(params[:product_id])
+    @item.quantity_remaining += 1
+    @item.update(item_params)
+    render :nothing
+  end
+
+  def decrease_quantity
+  end
+
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
@@ -64,7 +74,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.find(params[:product_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

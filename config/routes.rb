@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :items
   root :to => redirect('/items')
 
+  put 'increase_quantity/:product_id', to: 'items#increase_quantity'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

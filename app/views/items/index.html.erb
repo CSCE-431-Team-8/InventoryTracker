@@ -9,7 +9,8 @@
       <th>Name</th>
       <th>Description</th>
       <th>Quantity remaining</th>
-      <th>Quantity total</th>
+      <th>Increase</th>
+      <th>Decrease</th>
       <th>Rentable</th>
       <th>Price</th>
       <th colspan="3"></th>
@@ -22,8 +23,9 @@
         <td><%= item.product_id %></td>
         <td><%= item.name %></td>
         <td><%= item.description %></td>
-        <td><%= item.quantity_remaining %></td>
-        <td><%= item.quantity_total %></td>
+        <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
+        <td><%= link_to "Increase", "increase_quantity/#{item.product_id}", :remote => true, :method => :put %></td>
+        <td><%#= button_to "Decrease", action "decrease_quantity" %></td>
         <td><%= item.rentable %></td>
         <td><%= item.price %></td>
         <td><%= link_to 'Show', item %></td>

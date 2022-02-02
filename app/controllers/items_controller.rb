@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
 
   def increase_quantity
     @item = Item.find_by_id(params[:id])
-    @item.increment!(:quantity_remaining, 1)
+    @item.increment!(:quantity_remaining, params[:quantity].to_i)
     respond_to do |format|
       format.js {render inline: "location.reload();" }
     end
@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
 
   def decrease_quantity
     @item = Item.find_by_id(params[:id])
-    @item.increment!(:quantity_remaining, -1)
+    @item.increment!(:quantity_remaining, -(params[:quantity].to_i))
     respond_to do |format|
       format.js {render inline: "location.reload();" }
     end

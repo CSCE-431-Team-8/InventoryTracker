@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  resources :items
+  resources :logins
 
-  root to: 'pages#home'
+  root 'homes#home'
+
+  put 'increase_quantity/:id', to: 'items#increase_quantity'
+  put 'decrease_quantity/:id', to: 'items#decrease_quantity'
+  
+  # post 'login' => 'login#login',:as => 'login'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

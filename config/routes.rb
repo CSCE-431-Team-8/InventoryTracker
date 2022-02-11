@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   root 'homes#home'
 
-  put 'increase_quantity/:id', to: 'items#increase_quantity'
-  put 'decrease_quantity/:id', to: 'items#decrease_quantity'
+  put 'increase_quantity/:id/:quantity', to: 'items#increase_quantity'
+  put 'decrease_quantity/:id/:quantity', to: 'items#decrease_quantity'
   
   # post 'login' => 'login#login',:as => 'login'
 

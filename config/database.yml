@@ -21,5 +21,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  host: <%= ENV['HOSTNAME'] %>
+  port: 5432
+  adapter: postgres
+  encoding: utf8
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: postgres
+  password: <%= ENV['DATABASE_PASSWORD'] %>

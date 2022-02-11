@@ -24,8 +24,8 @@
         <td><%= item.name %></td>
         <td><%= item.description %></td>
         <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
-        <td><%= link_to "Increase", "increase_quantity/#{item.id}", :remote => true, :method => :put %></td>
-        <td><%= link_to "Decrease", "decrease_quantity/#{item.id}", :remote => true, :method => :put %></td>
+        <td><%= link_to "Increase", "increase_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
+        <td><%= link_to "Decrease", "decrease_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
         <td><%= item.rentable %></td>
         <td><%= item.price %></td>
         <td><%= link_to 'Show', item %></td>

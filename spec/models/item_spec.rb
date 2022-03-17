@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
 
-    before(:all) do
+    before(:each) do
         @item = Item.create(name: "Basketballs spec", quantity_remaining: 10, quantity_total: 15, price: 10)
     end
 

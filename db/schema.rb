@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(version: 20220106190136) do
 
   create_table "items", force: :cascade do |t|
-    t.string   "product_id"
     t.string   "name"
     t.text     "description"
     t.decimal  "quantity_remaining"

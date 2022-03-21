@@ -6,8 +6,10 @@
   <thead>
     <tr>
       <th>Product ID</th>
+      <th>Organization</th>
       <th>Name</th>
       <th>Description</th>
+      <th>Locations</th>
       <th>Quantity remaining</th>
       <th>Increase</th>
       <th>Decrease</th>
@@ -21,8 +23,10 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.id %></td>
+        <td><%= item.organization %></td>
         <td><%= item.name %></td>
         <td><%= item.description %></td>
+        <td><%= item.location %></td>
         <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
         <td><%= link_to "Increase", "increase_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
         <td><%= link_to "Decrease", "decrease_quantity/#{item.id}/1", :remote => true, :method => :put %></td>

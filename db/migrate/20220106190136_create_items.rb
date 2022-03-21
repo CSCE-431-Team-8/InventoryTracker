@@ -1,8 +1,10 @@
 class CreateItems < ActiveRecord::Migration
   def change
     create_table 'items' do |t|
+      t.string 'organization'
       t.string 'name'
       t.text 'description'
+      t.string 'location'
       t.decimal 'quantity_remaining'
       t.decimal 'quantity_total'
       t.boolean 'rentable'

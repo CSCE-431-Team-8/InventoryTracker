@@ -14,9 +14,10 @@
 ActiveRecord::Schema.define(version: 20220106190136) do
 
   create_table "items", force: :cascade do |t|
-    t.string   "product_id"
+    t.string   "organization"
     t.string   "name"
     t.text     "description"
+    t.string   "location"
     t.decimal  "quantity_remaining"
     t.decimal  "quantity_total"
     t.boolean  "rentable"

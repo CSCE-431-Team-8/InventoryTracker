@@ -8,12 +8,12 @@
 
 
 more_items = [
-    {:product_id => '0001', :name => 'Golf Ball', :description => 'A ball for golf', :quantity_remaining => 20, 
-        :quantity_total => 25, :rentable => true, :price => 0},
-    {:product_id => '0002', :name => 'Tennis Ball', :description => 'A ball for tennis', :quantity_remaining => 10, 
-        :quantity_total => 20, :rentable => true, :price => 0},
-    {:product_id => '0003', :name => 'Basket Ball', :description => 'A ball for basketball', :quantity_remaining => 5, 
-        :quantity_total => 15, :rentable => true, :price => 0}
+    {:name => 'Golf Ball', :description => 'A ball for golf', :quantity_remaining => 20, 
+        :quantity_total => 25, :rentable => false, :price => 5, :organization => "TAMU", :location => "Gear Locker"},
+    {:name => 'Tennis Ball', :description => 'A ball for tennis', :quantity_remaining => 10, 
+        :quantity_total => 20, :rentable => true, :price => 10, :organization => "TAMU", :location => "Gear Locker"},
+    {:name => 'Basket Ball', :description => 'A ball for basketball', :quantity_remaining => 5, 
+        :quantity_total => 15, :rentable => true, :price => 0, :organization => "TAMU", :location => "Backwall"}
   ]
   
   more_items.each do |item|

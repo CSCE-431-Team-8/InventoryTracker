@@ -1,3 +1,6 @@
+class CreateRentedItem < ActiveRecord::Migration
+  def change
+    create_table :rented_items do |t|
       t.string "organization"
       t.string "item_id"
       t.string "user_renting"

@@ -67,6 +67,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def rent_item
+    @item = Item.find_by_id(params[:id])
+    @item.add_rented_item
+  end
+
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy

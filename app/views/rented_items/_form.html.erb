@@ -1,0 +1,49 @@
+<%= form_for(@rented_item) do |f| %>
+  <% if @rented_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rented_item.errors.count, "error") %> prohibited this rented_item from being saved:</h2>
+
+      <ul>
+      <% @rented_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :organization %><br>
+    <%= f.text_field :organization %>
+  </div>
+  <div class="field">
+    <%= f.label :item_id %><br>
+    <%= f.text_field :item_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_renting %><br>
+    <%= f.text_field :user_renting %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :date_rented %><br>
+    <%= f.text_field :date_rented %>
+  </div>
+  <div class="field">
+    <%= f.label :return_date %><br>
+    <%= f.text_field :return_date %>
+  </div>
+  <div class="field">
+    <%= f.label :time_rented %><br>
+    <%= f.text_field :time_rented %>
+  </div>
+  <div class="field">
+    <%= f.label :max_rent_time %><br>
+    <%= f.text_field :max_rent_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   resources :items
   resources :logins
+  resources :rented_items
 
   root 'homes#home'
 
   put 'increase_quantity/:id/:quantity', to: 'items#increase_quantity'
   put 'decrease_quantity/:id/:quantity', to: 'items#decrease_quantity'
+  put 'rent_item/:id', to: 'items#rent_item'
   
   # post 'login' => 'login#login',:as => 'login'
 

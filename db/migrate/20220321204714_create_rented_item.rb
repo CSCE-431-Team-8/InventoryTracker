@@ -9,6 +9,7 @@ class CreateRentedItem < ActiveRecord::Migration
       t.date "return_date"
       t.decimal "time_rented"
       t.decimal "max_rent_time"
+      t.belongs_to :item, foreign_key: true
       t.timestamps
     end
   end

@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
-    has_many :rented_items
+    has_many :rented_items, dependent: :destroy
+    # belongs_to :organization
 
     validates :name, presence: true
     validates :quantity_total, numericality: { greater_than_or_equal_to: 0}
@@ -7,8 +8,10 @@ class Item < ActiveRecord::Base
     validates :rentable, inclusion: { in: [ true, false ] }
 
     def add_rented_item
+        self.decrement!(:quantity_remaining, 1)
         i = rented_items.new
         i.item_id = self.id
+        i.item = self
         i.date_rented = Date.today.to_s
         i.organization = self.organization
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   put 'increase_quantity/:id/:quantity', to: 'items#increase_quantity'
   put 'decrease_quantity/:id/:quantity', to: 'items#decrease_quantity'
   put 'rent_item/:id', to: 'items#rent_item'
+  put 'return_item/:id', to: 'rented_items#return_item'
   
   # post 'login' => 'login#login',:as => 'login'
 

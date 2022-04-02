@@ -70,6 +70,9 @@ class ItemsController < ApplicationController
   def rent_item
     @item = Item.find_by_id(params[:id])
     @item.add_rented_item
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   # DELETE /items/1

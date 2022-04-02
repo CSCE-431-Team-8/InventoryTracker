@@ -61,6 +61,14 @@ class RentedItemsController < ApplicationController
     end
   end
 
+  def return_item
+    @rented_item = RentedItem.find_by_id(params[:id])
+    @rented_item.return_item
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rented_item

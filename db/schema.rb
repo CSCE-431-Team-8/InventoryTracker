@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20220321204714) do
 
   create_table "rented_items", force: :cascade do |t|
     t.string   "organization"
-    t.string   "item_id"
+    t.integer  "item_id"
     t.string   "user_renting"
     t.decimal  "age"
     t.date     "date_rented"

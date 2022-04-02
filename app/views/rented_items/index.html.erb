@@ -1,8 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+
 <h1>Listing Rented Items</h1>
 
-<table>
+<table style="width:100%">
   <thead>
     <tr>
       <th>Organization</th>
@@ -28,9 +34,9 @@
         <td><%= rented_item.return_date %></td>
         <td><%= rented_item.time_rented %></td>
         <td><%= rented_item.max_rent_time %></td>
+        <td><%= link_to "Return", "return_item/#{rented_item.id}", :remote => true, :method => :put %></td>
         <td><%= link_to 'Show', rented_item %></td>
         <td><%= link_to 'Edit', edit_rented_item_path(rented_item) %></td>
-        <td><%= link_to 'Destroy', rented_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

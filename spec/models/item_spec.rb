@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
 
     before(:each) do
-        @item = Item.create(name: "Basketballs spec", quantity_remaining: 10, quantity_total: 15, price: 10)
+        @item = Item.create(name: "Basketballs spec", quantity_remaining: 10, quantity_total: 15, price: 10, rentable: true)
     end
 
     it 'checks that an item can be created' do

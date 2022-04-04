@@ -39,6 +39,7 @@ table, th, td {
         <td><%= link_to "Rent", "rent_item/#{item.id}", :remote => true, :method => :put %></td> <%# Instead of checkout it will be a button that checks the item out %>
         <td><%= item.price %></td>
         <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

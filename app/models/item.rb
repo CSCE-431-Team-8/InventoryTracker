@@ -7,11 +7,12 @@ class Item < ActiveRecord::Base
     validates :quantity_remaining, presence: true
     validates :rentable, inclusion: { in: [ true, false ] }
 
-    def add_rented_item
+    def add_rented_item(user)
         self.decrement!(:quantity_remaining, 1)
         i = rented_items.new
         i.item_id = self.id
         i.item = self
+        i.user_renting = user
         i.date_rented = Date.today.to_s
         i.organization = self.organization
 

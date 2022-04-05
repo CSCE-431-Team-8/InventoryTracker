@@ -69,7 +69,8 @@ class ItemsController < ApplicationController
 
   def rent_item
     @item = Item.find_by_id(params[:id])
-    @item.add_rented_item
+    @userName = User.find_by_id(session[:user_id]).name
+    @item.add_rented_item(@userName)
     respond_to do |format|
       format.js {render inline: "location.reload();" }
     end

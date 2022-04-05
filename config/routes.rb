@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :items
   resources :logins
   resources :rented_items
+  resources :sessions, only: [:create]
 
   root 'homes#home'
 

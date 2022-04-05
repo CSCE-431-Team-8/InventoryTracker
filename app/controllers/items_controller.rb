@@ -4,7 +4,30 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if params[:search]
+      # @items = Item.search(params[:search])
+      if params[:sort] != "quantity_remaining"
+        @items = Item.search(params[:search]).order(params[:sort])
+      elsif params[:sort] == "quantity_remaining"
+        @items = Item.search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+      else
+        @items = Item.search(params[:search]).order("id")
+      end
+    else
+      if params[:sort] != "quantity_remaining"
+        @items = Item.order(params[:sort])
+      elsif params[:sort] == "quantity_remaining"
+        @items = Item.all.sort_by{|item| item.quantity_remaining / item.quantity_total}
+      else
+        @items = Item.order("id")
+      end
+    end
+  end
+
+  def search_items
+    if @item = Item.all.find{|item| item.name.include?(params[:search])}
+      redirect_to item_path(@item)
+    end
   end
 
   # GET /items/1

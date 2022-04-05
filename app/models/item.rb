@@ -13,10 +13,20 @@ class Item < ActiveRecord::Base
         i.item_id = self.id
         i.item = self
         i.user_renting = user
+        i.age = rand(20)
         i.date_rented = Date.today.to_s
+        i.return_date = Date.today + 14
         i.organization = self.organization
 
         i.save!
+    end
+
+    def self.search(search)
+        # where("name LIKE ?", "%#{search}%") 
+        # where("description LIKE ?", "%#{search}%") 
+        # where("location LIKE ?", "%#{search}%") 
+        # where("id LIKE ?", "%#{search}%")
+        where("name LIKE ? OR description LIKE ? OR location LIKE ? OR id LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     end
 end
 

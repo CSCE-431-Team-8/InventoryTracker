@@ -4,7 +4,11 @@ class RentedItemsController < ApplicationController
   # GET /rented_items
   # GET /rented_items.json
   def index
-    @rented_items = RentedItem.all
+    if params[:sort] != ""
+      @rented_items = RentedItem.order(params[:sort])
+    else
+      @rented_items = RentedItem.order("id")
+    end
   end
 
   # GET /rented_items/1

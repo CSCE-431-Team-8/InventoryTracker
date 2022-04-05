@@ -4,10 +4,18 @@ class RentedItemsController < ApplicationController
   # GET /rented_items
   # GET /rented_items.json
   def index
-    if params[:sort] != ""
-      @rented_items = RentedItem.order(params[:sort])
+    if params[:search]
+      if params[:sort] != ""
+        @rented_items = RentedItem.search(params[:search]).order(params[:sort])
+      else
+        @rented_items = RentedItem.search(params[:search]).order("id")
+      end
     else
-      @rented_items = RentedItem.order("id")
+      if params[:sort] != ""
+        @rented_items = RentedItem.order(params[:sort])
+      else
+        @rented_items = RentedItem.order("id")
+      end
     end
   end
 

@@ -2,15 +2,22 @@
 
 <h1>Listing Rented Items</h1>
 
+<%= form_tag(rented_items_path, method: :get) do %>
+  <p> Search for an item </p>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= hidden_field_tag(:sort, params[:sort]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Organization", :sort => "organization"%></th>
-      <th><%= link_to "Item ID", :sort => "id"%></th>
-      <th><%= link_to "User Renting", :sort => "user_renting"%></th>
-      <th><%= link_to "Age", :sort => "age"%></th>
-      <th><%= link_to "Date Rented", :sort => "date_rented"%></th>
-      <th><%= link_to "Return Date", :sort => "return_date"%></th>
+      <th><%= link_to "Organization", :sort => "organization", :search => params[:search]%></th>
+      <th><%= link_to "Item ID", :sort => "id", :search => params[:search]%></th>
+      <th><%= link_to "User Renting", :sort => "user_renting", :search => params[:search]%></th>
+      <th><%= link_to "Age", :sort => "age", :search => params[:search]%></th>
+      <th><%= link_to "Date Rented", :sort => "date_rented", :search => params[:search]%></th>
+      <th><%= link_to "Return Date", :sort => "return_date", :search => params[:search]%></th>
       <%# <th><%= link_to "Total Time Rented", :sort => "time_rented"%>
       <%# Total time rented should probably be moved to the item model along with max rent time %>
       <%# <th><%= link_to "Max Rent Time", :sort => "max_rent_time"%>

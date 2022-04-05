@@ -11,4 +11,8 @@ class RentedItem < ActiveRecord::Base
         self.item.increment!(:quantity_remaining, 1)
         self.delete
     end
+
+    def self.search(search)
+        where("item_id LIKE ? OR user_renting LIKE ? OR age LIKE ? OR date_rented LIKE ? OR return_date LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    end
 end

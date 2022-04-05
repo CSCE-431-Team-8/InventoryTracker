@@ -8,13 +8,13 @@ class RentedItemsController < ApplicationController
       if params[:sort] != ""
         @rented_items = RentedItem.search(params[:search]).order(params[:sort])
       else
-        @rented_items = RentedItem.search(params[:search]).order("id")
+        @rented_items = RentedItem.search(params[:search]).order("item_id")
       end
     else
       if params[:sort] != ""
         @rented_items = RentedItem.order(params[:sort])
       else
-        @rented_items = RentedItem.order("id")
+        @rented_items = RentedItem.order("item_id")
       end
     end
   end

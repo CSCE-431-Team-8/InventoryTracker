@@ -26,7 +26,7 @@ class Item < ActiveRecord::Base
         # where("description LIKE ?", "%#{search}%") 
         # where("location LIKE ?", "%#{search}%") 
         # where("id LIKE ?", "%#{search}%")
-        where("name LIKE ? OR description LIKE ? OR location LIKE ? OR id LIKE ? OR organization LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+        where("name LIKE ? OR description LIKE ? OR location LIKE ? OR cast(id as string) LIKE ? OR organization LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     end
 end
 

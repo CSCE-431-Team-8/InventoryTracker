@@ -4,7 +4,30 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if params[:search]
+      # @items = Item.search(params[:search])
+      if params[:sort] != "quantity_remaining"
+        @items = Item.search(params[:search]).order(params[:sort])
+      elsif params[:sort] == "quantity_remaining"
+        @items = Item.search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+      else
+        @items = Item.search(params[:search]).order("id")
+      end
+    else
+      if params[:sort] != "quantity_remaining"
+        @items = Item.order(params[:sort])
+      elsif params[:sort] == "quantity_remaining"
+        @items = Item.all.sort_by{|item| item.quantity_remaining / item.quantity_total}
+      else
+        @items = Item.order("id")
+      end
+    end
+  end
+
+  def search_items
+    if @item = Item.all.find{|item| item.name.include?(params[:search])}
+      redirect_to item_path(@item)
+    end
   end
 
   # GET /items/1
@@ -67,6 +90,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def rent_item
+    @item = Item.find_by_id(params[:id])
+    @userName = User.find_by_id(session[:user_id]).name
+    @item.add_rented_item(@userName)
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+  end
+
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
@@ -85,7 +117,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:id, :organization, :name, :description, :quantity_remaining, :quantity_total, :rentable, :price)
+      params.require(:item).permit(:id, :organization, :location, :name, :description, :quantity_remaining, :quantity_total, :rentable, :price)
     end
 
 end

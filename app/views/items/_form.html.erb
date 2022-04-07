@@ -24,6 +24,14 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :organization %><br>
+    <%= f.text_field :organization %>
+  </div>
+  <div class="field">
     <%= f.label :quantity_remaining %><br>
     <%= f.text_field :quantity_remaining %>
   </div>
@@ -33,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :rentable %><br>
-    <%= f.text_field :rentable %>
+    <%= f.check_box :rentable %>
   </div>
   <div class="field">
     <%= f.label :price %><br>

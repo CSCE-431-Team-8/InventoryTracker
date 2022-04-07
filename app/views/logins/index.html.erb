@@ -1,8 +1,10 @@
 <header><h2>LOGIN</h2></header>
-<form action="/items">
+<%# <form action="/items">
   <label for="user">Username:</label><br>
   <input type="text" id="user" value="john@tamu.edu"><br>
   <label for="pass">Password:</label><br>
   <input type="password" id="pass" value=""><br><br>
   <input type="submit" value="Login">
-</form>
+</form> %>
+
+<%= button_to "Log in with Google", '/auth/google_oauth2'  %>

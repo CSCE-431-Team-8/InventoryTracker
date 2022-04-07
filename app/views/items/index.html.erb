@@ -2,17 +2,26 @@
 
 <h1>Inventory</h1>
 
+<%= form_tag(items_path, method: :get) do %>
+  <p> Search for an item </p>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= hidden_field_tag(:sort, params[:sort]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
 <table>
   <thead>
     <tr>
-      <th>Product ID</th>
-      <th>Name</th>
+      <th><%= link_to "Product ID", :sort => "id", :search => params[:search]%></th>
+      <th><%= link_to "Organization", :sort => "organization", :search => params[:search]%></th>
+      <th><%= link_to "Name", :sort => "name", :search => params[:search]%></th>
       <th>Description</th>
-      <th>Quantity remaining</th>
+      <th><%= link_to "Locations", :sort => "location", :search => params[:search]%></th>
+      <th><%= link_to "Quantity Remaining", :sort => "quantity_remaining", :search => params[:search]%></th>
       <th>Increase</th>
       <th>Decrease</th>
       <th>Rentable</th>
-      <th>Price</th>
+      <th><%= link_to "Price", :sort => "price", :search => params[:search]%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,14 +30,17 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.id %></td>
+        <td><%= item.organization %></td>
         <td><%= item.name %></td>
         <td><%= item.description %></td>
+        <td><%= item.location %></td>
         <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
         <td><%= link_to "Increase", "increase_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
         <td><%= link_to "Decrease", "decrease_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
-        <td><%= item.rentable %></td>
+        <td><%= link_to "Rent", "rent_item/#{item.id}", :remote => true, :method => :put %></td> <%# Instead of checkout it will be a button that checks the item out %>
         <td><%= item.price %></td>
         <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

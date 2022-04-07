@@ -14,5 +14,5 @@ Scenario: Delete an existing item
     When I go to the inventory page
     And I should see "golf ball"
     And I should see "5.0/5.0"
-    When I remove an item
-    Then I should see "4.0/5.0"
+    When I click on "Remove"
+    Then I should see "Are you"

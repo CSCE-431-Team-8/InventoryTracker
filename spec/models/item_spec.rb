@@ -39,4 +39,10 @@ RSpec.describe Item, type: :model do
         expect(@item_temp3).not_to be_valid
     end
 
+    it 'creates a new rented item' do
+        @item.add_rented_item("Ryan")
+        @renteditem = RentedItem.find_by_item_id(@item.id)
+        expect(@renteditem.item).to eq(@item)
+    end
+
 end

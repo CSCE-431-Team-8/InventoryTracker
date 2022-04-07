@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # Routes for Google authentication
   post 'auth/:provider/callback', to: 'sessions#omniauth'
+  get 'auth/:provider/callback', to: 'sessions#omniauth'
   get 'auth/failure', to: redirect('/')
 
   put 'increase_quantity/:id/:quantity', to: 'items#increase_quantity'

@@ -37,6 +37,12 @@ Given /the following items exist/ do |items_table|
     end
 end
 
+Given /the following rented items exist/ do |rented_table|
+  rented_table.hashes.each do |item|
+    RentedItem.create item
+  end
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
@@ -64,8 +70,8 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
 end
 
 # ----- MINE ----- 
-When /^(?:|I )click on "([^"]*)"$/ do |string|
-  click_on(string)
+When('I click on {string}') do |link|
+  click_link(link)
 end
 
 When /^I remove an item$/ do

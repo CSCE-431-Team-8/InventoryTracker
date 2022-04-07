@@ -13,6 +13,5 @@ Given the following items exist:
 Scenario: Delete an existing item
     When I go to the inventory page
     And I should see "golf ball"
-    And I should see "5.0/5.0"
-    When I click on "Remove"
-    Then I should see "Are you"
+    When I click on 'Remove'
+    Then I should not see "golf ball"

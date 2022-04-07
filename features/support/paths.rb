@@ -17,10 +17,12 @@ module NavigationHelpers
          '/items'
 
       when /^the login page$/
-        '/login'
+        '/'
       
       when /^the delete button/
         "Remove"
+      when /^the rented items page$/
+        '/rented_items'
 
         
   

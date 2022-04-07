@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   root 'homes#home'
 
   # Routes for Google authentication
-  post 'auth/:provider/callback', to: 'sessions#omniauth'
   get 'auth/:provider/callback', to: 'sessions#omniauth'
   get 'auth/failure', to: redirect('/')
 

@@ -216,7 +216,7 @@ DEPENDENCIES
   jquery-rails
   omniauth
   omniauth-google-oauth2
-  omniauth-rails_csrf_protection
+  omniauth-rails_csrf_protection (~> 1.0)
   pg (~> 0.21)
   rails (= 4.2.11.3)
   rails_12factor

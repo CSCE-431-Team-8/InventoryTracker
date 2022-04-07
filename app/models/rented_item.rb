@@ -13,6 +13,6 @@ class RentedItem < ActiveRecord::Base
     end
 
     def self.search(search)
-        where("cast(item_id as string) LIKE ? OR user_renting LIKE ? OR age LIKE ? OR date_rented LIKE ? OR return_date LIKE ? OR organization LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+        where("cast(item_id as text) LIKE ? OR user_renting LIKE ? OR age LIKE ? OR date_rented LIKE ? OR return_date LIKE ? OR organization LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     end
 end

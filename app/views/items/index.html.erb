@@ -32,15 +32,13 @@
         <td><%= item.id %></td>
         <td><%= item.organization %></td>
         <td><%= item.name %></td>
-        <td><%= item.description %></td>
+        <td><%= link_to item.description, item %></td>
         <td><%= item.location %></td>
         <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
         <td><%= link_to "Increase", "increase_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
         <td><%= link_to "Decrease", "decrease_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
         <td><%= link_to "Rent", "rent_item/#{item.id}", :remote => true, :method => :put %></td> <%# Instead of checkout it will be a button that checks the item out %>
         <td><%= item.price %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

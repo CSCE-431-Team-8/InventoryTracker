@@ -24,19 +24,4 @@ RSpec.describe RentedItem, type: :model do
         expect(RentedItem.find_by_item_id("1")).to be_nil
     end
 
-    # it 'is not valid without a name' do 
-    #     @rented_item_temp = Item.create(name: nil, quantity_remaining: 10, quantity_total: 15, price: 10)
-    #     expect(@rented_item_temp).not_to be_valid
-    # end
-
-    # it 'is not valid without a quantity remaining' do 
-    #     @rented_item_temp2 = Item.create(name: "Baseball spec", quantity_remaining: nil, quantity_total: 15, price: 10)
-    #     expect(@rented_item_temp2).not_to be_valid
-    # end
-
-    # it 'is not valid if total quantity is less than 0' do 
-    #     @rented_item_temp3 = Item.create(name: "Baseball spec", quantity_remaining: 10, quantity_total: -1, price: 10)
-    #     expect(@rented_item_temp3).not_to be_valid
-    # end
-
 end

@@ -55,6 +55,7 @@ class ItemsController < ApplicationController
     @item = Item.find_by_id(params[:id])
     @item.increment!(:quantity_remaining, params[:quantity].to_i)
     respond_to do |format|
+      format.html {render 'new'}
       format.js {render inline: "location.reload();" }
     end
   end

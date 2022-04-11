@@ -34,6 +34,20 @@ group :development, :test do
   gem 'byebug'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.0'
+<<<<<<< Updated upstream
+=======
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+end
+
+group :test do
+    gem "capybara"
+    gem "selenium-webdriver"
+    gem "webdrivers"
+    gem 'cucumber-rails', require: false
+    gem 'database_cleaner'
+    gem 'simplecov', require: false
+    gem 'capybara-webkit'
+>>>>>>> Stashed changes
 end
 
 group :development do

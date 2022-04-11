@@ -89,6 +89,6 @@ class RentedItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rented_item_params
-      params.require(:rented_item).permit(:organization, :item_id, :user_renting, :age, :date_rented, :return_date, :time_rented, :max_rent_time)
+      params.require(:rented_item).permit(:organization, :organization_id, :item_id, :user_renting, :age, :date_rented, :return_date, :time_rented, :max_rent_time)
     end
 end

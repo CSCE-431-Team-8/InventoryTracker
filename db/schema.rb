@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220404214731) do
+ActiveRecord::Schema.define(version: 20220411214106) do
 
   create_table "items", force: :cascade do |t|
-    t.string   "organization"
     t.string   "name"
     t.text     "description"
     t.string   "location"
@@ -22,12 +21,28 @@ ActiveRecord::Schema.define(version: 20220404214731) do
     t.decimal  "quantity_total"
     t.boolean  "rentable"
     t.float    "price"
+    t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id"
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rented_items", force: :cascade do |t|
-    t.string   "organization"
     t.integer  "item_id"
     t.string   "user_renting"
     t.decimal  "age"
@@ -35,6 +50,7 @@ ActiveRecord::Schema.define(version: 20220404214731) do
     t.date     "return_date"
     t.decimal  "time_rented"
     t.decimal  "max_rent_time"
+    t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

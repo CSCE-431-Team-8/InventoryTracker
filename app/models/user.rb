@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    has_many :organizations, through: :membership
     has_secure_password
     validates :email, presence: true
     validates :email, uniqueness: true

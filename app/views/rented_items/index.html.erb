@@ -28,7 +28,7 @@
   <tbody>
     <% @rented_items.each do |rented_item| %>
       <tr>
-        <td><%= rented_item.organization %></td>
+        <td><%= rented_item.organization.name %></td>
         <td><%= rented_item.item_id %></td>
         <td><%= rented_item.user_renting %></td>
         <td><%= rented_item.age %></td>

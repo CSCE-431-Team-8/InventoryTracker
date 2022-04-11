@@ -1,5 +1,6 @@
 class RentedItem < ActiveRecord::Base
     belongs_to :item
+    belongs_to :organization
     # belongs_to :user
 
     # validates :name, presence: true

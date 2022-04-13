@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :items
   resources :logins
   resources :rented_items
+  resources :organizations
+  resources :memberships
   resources :sessions, only: [:create]
 
   root 'homes#home'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   put 'decrease_quantity/:id/:quantity', to: 'items#decrease_quantity'
   put 'rent_item/:id', to: 'items#rent_item'
   put 'return_item/:id', to: 'rented_items#return_item'
+  put 'join_org/:id', to: 'organizations#join_org'
   
   # post 'login' => 'login#login',:as => 'login'
 

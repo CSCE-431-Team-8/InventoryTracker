@@ -1,5 +1,6 @@
 class LoginsController < ApplicationController
   before_action :set_login, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :require_login
 
   # GET /logins
   # GET /logins.json

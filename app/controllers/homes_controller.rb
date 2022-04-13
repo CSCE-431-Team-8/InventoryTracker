@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   before_action :set_home, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :require_login
 
   # GET /homes
   # GET /homes.json

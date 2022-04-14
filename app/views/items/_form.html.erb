@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :organization %><br>
-    <%= f.collection_select :organization_id, User.find_by_id(session[:user_id]).organizations, :id, :name, prompt: true %>
+    <%= f.collection_select :organization_id, Organization.where(id: User.find_by_id(session[:user_id]).memberships.where(admin: true).select("organization_id")), :id, :name, prompt: true %>
   </div>
   <div class="field">
     <%= f.label :quantity_remaining %><br>

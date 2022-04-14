@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :increase_quantity, :decrease_quantity]
+  skip_before_filter :require_login, only: [:index, :show]
 
   # GET /items
   # GET /items.json

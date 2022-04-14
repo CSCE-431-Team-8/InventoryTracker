@@ -18,9 +18,7 @@
       <th>Description</th>
       <th><%= link_to "Locations", :sort => "location", :search => params[:search]%></th>
       <th><%= link_to "Quantity Remaining", :sort => "quantity_remaining", :search => params[:search]%></th>
-      <th>Increase</th>
-      <th>Decrease</th>
-      <th>Rentable</th>
+      <th>Rent</th>
       <th><%= link_to "Price", :sort => "price", :search => params[:search]%></th>
       <th colspan="3"></th>
     </tr>
@@ -35,13 +33,9 @@
         <td><%= item.description %></td>
         <td><%= item.location %></td>
         <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
-        <td><%= link_to "Increase", "increase_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
-        <td><%= link_to "Decrease", "decrease_quantity/#{item.id}/1", :remote => true, :method => :put %></td>
         <td><%= link_to "Rent", "rent_item/#{item.id}", :remote => true, :method => :put %></td> <%# Instead of checkout it will be a button that checks the item out %>
         <td><%= item.price %></td>
         <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

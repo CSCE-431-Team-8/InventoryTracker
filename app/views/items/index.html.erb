@@ -32,10 +32,10 @@
         <td><%= link_to item.name, item %></td>
         <td><%= item.description %></td>
         <td><%= item.location %></td>
-        <td><%= item.quantity_remaining %></td>
-        <td><%= item.quantity_total %></td>
+        <td><%= number_with_precision(item.quantity_remaining, precision: 0) %></td>
+        <td><%= number_with_precision(item.quantity_total,precision: 0) %></td>
         <td><%= link_to "Rent", "rent_item/#{item.id}", :remote => true, :method => :put %></td> <%# Instead of checkout it will be a button that checks the item out %>
-        <td><%= item.price %></td>
+        <td><%= number_to_currency(item.price) %></td>
       </tr>
     <% end %>
   </tbody>

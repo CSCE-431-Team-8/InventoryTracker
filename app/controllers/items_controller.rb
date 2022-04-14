@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :increase_quantity, :decrease_quantity]
-  skip_before_filter :require_login, only: [:index, :show]
+  # skip_before_filter :require_login, only: [:index, :show]
 
   # GET /items
   # GET /items.json
@@ -8,19 +8,19 @@ class ItemsController < ApplicationController
     if params[:search]
       # @items = Item.search(params[:search])
       if params[:sort] != "quantity_remaining"
-        @items = Item.search(params[:search]).order(params[:sort])
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
       elsif params[:sort] == "quantity_remaining"
-        @items = Item.search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
       else
-        @items = Item.search(params[:search]).order("id")
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("id")
       end
     else
       if params[:sort] != "quantity_remaining"
-        @items = Item.order(params[:sort])
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
       elsif params[:sort] == "quantity_remaining"
-        @items = Item.all.sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.quantity_remaining / item.quantity_total}
       else
-        @items = Item.order("id")
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order("id")
       end
     end
   end

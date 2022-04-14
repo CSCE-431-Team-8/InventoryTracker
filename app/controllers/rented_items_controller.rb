@@ -6,15 +6,15 @@ class RentedItemsController < ApplicationController
   def index
     if params[:search]
       if params[:sort] != ""
-        @rented_items = RentedItem.search(params[:search]).order(params[:sort])
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
       else
-        @rented_items = RentedItem.search(params[:search]).order("item_id")
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("item_id")
       end
     else
       if params[:sort] != ""
-        @rented_items = RentedItem.order(params[:sort])
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
       else
-        @rented_items = RentedItem.order("item_id")
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order("item_id")
       end
     end
   end

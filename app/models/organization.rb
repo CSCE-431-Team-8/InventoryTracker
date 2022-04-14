@@ -8,6 +8,7 @@ class Organization < ActiveRecord::Base
         i = memberships.new
         i.organization = self
         i.user = user
+        i.admin = false
         i.save!
     end
 end

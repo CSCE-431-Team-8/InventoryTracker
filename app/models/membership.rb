@@ -5,4 +5,5 @@ class Membership < ActiveRecord::Base
   validates :user, uniqueness: {scope: :organization}
   validates :user, presence: true
   validates :organization, presence: true
+  validates :admin, inclusion: { in: [ true, false ] }
 end

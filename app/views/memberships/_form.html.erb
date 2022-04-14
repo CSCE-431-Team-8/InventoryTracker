@@ -13,11 +13,15 @@
 
   <div class="field">
     <%= f.label :organization %><br>
-    <%= f.text_field :organization %>
+    <%= f.label @membership.organization.name %>
   </div>
   <div class="field">
     <%= f.label :user %><br>
-    <%= f.text_field :user %>
+    <%= f.label @membership.user.name %>
+  </div>
+  <div class="field">
+    <%= f.label :admin %>
+    <%= f.check_box :admin %>
   </div>
   <div class="actions">
     <%= f.submit %>

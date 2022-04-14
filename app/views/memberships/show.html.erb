@@ -2,12 +2,17 @@
 
 <p>
   <strong>Organization:</strong>
-  <%= @membership.organization %>
+  <%= @membership.organization.name %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @membership.user %>
+  <%= @membership.user.name %>
+</p>
+
+<p>
+  <strong>Admin?:</strong>
+  <%= @membership.admin %>
 </p>
 
 <%= link_to 'Edit', edit_membership_path(@membership) %> |

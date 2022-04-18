@@ -114,6 +114,7 @@ class ItemsController < ApplicationController
     @rented_item = RentedItem.new
     @rented_item.item = @item
     @rented_item.item_id = @item.id
+    @rented_item.user_renting = current_user().name
     @rented_item.date_rented = Date.today.to_s
     @rented_item.return_date = Date.today + 14
     @rented_item.organization = @item.organization

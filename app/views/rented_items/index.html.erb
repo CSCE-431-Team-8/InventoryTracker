@@ -14,8 +14,10 @@
     <tr>
       <th><%= link_to "Organization", :sort => "organization", :search => params[:search]%></th>
       <th><%= link_to "Item ID", :sort => "item_id", :search => params[:search]%></th>
-      <th><%= link_to "User Renting", :sort => "user_renting", :search => params[:search]%></th>
-      <th><%= link_to "Age", :sort => "age", :search => params[:search]%></th>
+      <th><%= link_to "Helped By", :sort => "user_renting", :search => params[:search]%></th>
+      <th><%= link_to "Rented By", :sort => "renter_name", :search => params[:search]%></th>
+      <th><%= link_to "Phone Number", :sort => "phone_number", :search => params[:search]%></th>
+      <th>Address</th>
       <th><%= link_to "Date Rented", :sort => "date_rented", :search => params[:search]%></th>
       <th><%= link_to "Return Date", :sort => "return_date", :search => params[:search]%></th>
       <%# <th><%= link_to "Total Time Rented", :sort => "time_rented"%>
@@ -31,11 +33,11 @@
         <td><%= rented_item.organization.name %></td>
         <td><%= rented_item.item_id %></td>
         <td><%= rented_item.user_renting %></td>
-        <td><%= rented_item.age %></td>
+        <td><%= rented_item.renter_name %></td>
+        <td><%= number_to_phone(rented_item.phone_number, area_code: true) %></td>
+        <td><%= rented_item.address %></td>
         <td><%= rented_item.date_rented %></td>
         <td><%= rented_item.return_date %></td>
-        <%# <td><%= rented_item.time_rented %>
-        <%# <td><%= rented_item.max_rent_time %>
         <td><%= link_to "Return", "return_item/#{rented_item.id}", :remote => true, :method => :put %></td>
         <td><%= link_to 'Show', rented_item %></td>
       </tr>
@@ -44,5 +46,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Rented item', new_rented_item_path %>

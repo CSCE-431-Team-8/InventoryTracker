@@ -11,9 +11,6 @@ class OrganizationsController < ApplicationController
     @org = Organization.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
     @org.join_org(@user)
-    respond_to do |format|
-      format.js {render inline: "location.reload();" }
-    end
   end
 
   # GET /organizations/1

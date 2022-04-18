@@ -49,6 +49,20 @@
   th{background-color: white;}
 
   table {
-      width: 100%;
+      width: 99%;
       margin: auto;
+  }
+
+  h1 {
+    padding-left: 10px;
+  }
+
+
+
+  p {
+    margin-left: 10px;
+  }
+  
+  div {
+    margin-left: 10px;
   }

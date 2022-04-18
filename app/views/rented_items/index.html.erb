@@ -4,9 +4,9 @@
 
 <%= form_tag(rented_items_path, method: :get) do %>
   <p> Search for an item </p>
-  <%= text_field_tag(:search, params[:search]) %>
+  <p><%= text_field_tag(:search, params[:search]) %>
   <%= hidden_field_tag(:sort, params[:sort]) %>
-  <%= submit_tag ("Search") %>
+  <%= submit_tag ("Search") %></p>
 <% end %>
 
 <table>
@@ -46,4 +46,4 @@
 
 <br>
 
-<%= link_to 'New Rented item', new_rented_item_path %>
+<p><%= link_to 'New Rented item', new_rented_item_path %></p>

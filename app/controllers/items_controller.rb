@@ -92,23 +92,6 @@ class ItemsController < ApplicationController
   end
 
   def rent_item
-    # @item = Item.find_by_id(params[:id])
-    # @userName = User.find_by_id(session[:user_id]).name
-    # @item.add_rented_item(@userName)
-    # respond_to do |format|
-    #   format.js {render inline: "location.reload();" }
-    # end
-    # self.decrement!(:quantity_remaining, 1)
-    #     i = rented_items.new
-    #     i.item_id = self.id
-    #     i.item = self
-    #     i.user_renting = user
-    #     i.age = rand(20)
-    #     i.date_rented = Date.today.to_s
-    #     i.return_date = Date.today + 14
-    #     i.organization = self.organization
-
-    #     i.save!
     @item = Item.find_by_id(params[:id])
     @item.decrement!(:quantity_remaining, 1)
     @rented_item = RentedItem.new

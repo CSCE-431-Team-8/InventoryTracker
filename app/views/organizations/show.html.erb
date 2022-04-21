@@ -6,5 +6,9 @@
 </p>
 
 <%= link_to 'View Items', :org_items_path %> |
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
+
+<% if User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @organization.id).exists? %>
+    <%= link_to 'Edit', edit_organization_path(@organization) %> |
+    <%= link_to 'Destroy', @organization, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+<% end %>
 <%= link_to 'Back', organizations_path %>

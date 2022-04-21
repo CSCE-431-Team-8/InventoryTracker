@@ -35,6 +35,11 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def members
+    @organization = Organization.find_by_id(params[:id])
+    @members = Membership.where(organization: params[:id])
+  end
+
   # GET /organizations/1
   # GET /organizations/1.json
   def show

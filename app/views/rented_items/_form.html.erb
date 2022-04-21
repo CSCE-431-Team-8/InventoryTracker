@@ -15,18 +15,20 @@
     <%= f.label :organization %><br>
     <%= f.collection_select :organization_id, Organization.all, :id, :name, prompt: true %>
   </div>
+  <%= f.hidden_field :item_id %>
   <div class="field">
-    <%= f.label :item_id %><br>
-    <%= f.text_field :item_id %>
+    <%= f.label :renter_name %><br>
+    <%= f.text_field :renter_name %>
   </div>
   <div class="field">
-    <%= f.label :user_renting %><br>
-    <%= f.text_field :user_renting %>
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
   </div>
   <div class="field">
-    <%= f.label :age %><br>
-    <%= f.text_field :age %>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
   </div>
+    <%= f.hidden_field :age %>
   <div class="field">
     <%= f.label :date_rented %><br>
     <%= f.text_field :date_rented %>
@@ -35,13 +37,8 @@
     <%= f.label :return_date %><br>
     <%= f.text_field :return_date %>
   </div>
-  <div class="field">
-    <%= f.label :time_rented %><br>
-    <%= f.text_field :time_rented %>
-  </div>
-  <div class="field">
-    <%= f.label :max_rent_time %><br>
-    <%= f.text_field :max_rent_time %>
+    <%= f.hidden_field :time_rented %>
+    <%= f.hidden_field :max_rent_time %>
   </div>
   <div class="actions">
     <%= f.submit %>

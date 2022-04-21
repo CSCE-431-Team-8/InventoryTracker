@@ -11,13 +11,23 @@
 </p>
 
 <p>
-  <strong>User renting:</strong>
+  <strong>Helped By:</strong>
   <%= @rented_item.user_renting %>
 </p>
 
 <p>
-  <strong>Age:</strong>
-  <%= @rented_item.age %>
+  <strong>Rented By:</strong>
+  <%= @rented_item.renter_name %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= number_to_phone(@rented_item.phone_number, area_code: true) %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @rented_item.address %>
 </p>
 
 <p>
@@ -28,16 +38,6 @@
 <p>
   <strong>Return date:</strong>
   <%= @rented_item.return_date %>
-</p>
-
-<p>
-  <strong>Time rented:</strong>
-  <%= @rented_item.time_rented %>
-</p>
-
-<p>
-  <strong>Max rent time:</strong>
-  <%= @rented_item.max_rent_time %>
 </p>
 
 <%= link_to "Return", "return_item/#{@rented_item.id}", :remote => true, :method => :put %><br><br>

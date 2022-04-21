@@ -5,5 +5,6 @@
   <%= @organization.name %>
 </p>
 
+<%= link_to 'View Items', :org_items_path %> |
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>

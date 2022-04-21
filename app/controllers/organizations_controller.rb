@@ -13,6 +13,28 @@ class OrganizationsController < ApplicationController
     @org.join_org(@user)
   end
 
+  def items
+    @organization = Organization.find_by_id(params[:id])
+    if params[:search]
+      # @items = Item.search(params[:search])
+      if params[:sort] != "quantity_remaining"
+        @items = Item.where(organization: params[:id]).search(params[:search]).order(params[:sort])
+      elsif params[:sort] == "quantity_remaining"
+        @items = Item.where(organization: params[:id]).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+      else
+        @items = Item.where(organization: params[:id]).search(params[:search]).order("id")
+      end
+    else
+      if params[:sort] != "quantity_remaining"
+        @items = Item.where(organization: params[:id]).order(params[:sort])
+      elsif params[:sort] == "quantity_remaining"
+        @items = Item.where(organization: params[:id]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+      else
+        @items = Item.where(organization: params[:id]).order("id")
+      end
+    end
+  end
+
   # GET /organizations/1
   # GET /organizations/1.json
   def show

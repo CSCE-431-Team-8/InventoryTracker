@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   put 'increase_quantity/:id/:quantity', to: 'items#increase_quantity'
   put 'decrease_quantity/:id/:quantity', to: 'items#decrease_quantity'
   get 'items/rent_item/:id', to: 'items#rent_item'
+  get 'organizations/:id/items', to: 'organizations#items', as: :org_items_path
   put 'return_item/:id', to: 'rented_items#return_item'
   put 'join_org/:id', to: 'organizations#join_org'
 

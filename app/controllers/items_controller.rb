@@ -7,18 +7,22 @@ class ItemsController < ApplicationController
   def index
     if params[:search]
       # @items = Item.search(params[:search])
-      if params[:sort] != "quantity_remaining"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
-      elsif params[:sort] == "quantity_remaining"
+      if params[:sort] == "quantity_remaining"
         @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+      elsif params[:sort] == "organization"
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.organization.name}
+      elsif params[:sort] != "quantity_remaining" || params[:sort] != "organization"
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
       else
         @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("id")
       end
     else
-      if params[:sort] != "quantity_remaining"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
-      elsif params[:sort] == "quantity_remaining"
+      if params[:sort] == "quantity_remaining"
         @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.quantity_remaining / item.quantity_total}
+      elsif params[:sort] == "organization"
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.organization.name}
+      elsif params[:sort] != "quantity_remaining"
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
       else
         @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order("id")
       end

@@ -5,14 +5,18 @@ class RentedItemsController < ApplicationController
   # GET /rented_items.json
   def index
     if params[:search]
-      if params[:sort] != ""
+      if params[:sort] != "organization"
         @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
+      elsif params[:sort] == "organization"
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.organization.name}
       else
         @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("item_id")
       end
     else
-      if params[:sort] != ""
+      if params[:sort] != "organization"
         @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
+      elsif params[:sort] == "organization"
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.organization.name}
       else
         @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order("item_id")
       end

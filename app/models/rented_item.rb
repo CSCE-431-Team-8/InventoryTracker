@@ -1,11 +1,10 @@
 class RentedItem < ActiveRecord::Base
     belongs_to :item
+    belongs_to :organization
     # belongs_to :user
 
-    # validates :name, presence: true
-    # validates :quantity_total, numericality: { greater_than_or_equal_to: 0}
-    # validates :quantity_remaining, presence: true
-    # validates :rentable, inclusion: { in: [ true, false ] }
+    validates :phone_number,:presence => true, :numericality => true, :length => { :minimum => 10, :maximum => 15 }
+    validates :renter_name, :presence => true
 
     def return_item
         self.item.increment!(:quantity_remaining, 1)

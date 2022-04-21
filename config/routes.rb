@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  resources :items
-  resources :logins
-  resources :rented_items
-  resources :sessions, only: [:create]
-
-  root 'homes#home'
 
   # Routes for Google authentication
   get 'auth/:provider/callback', to: 'sessions#omniauth'
@@ -12,8 +6,22 @@ Rails.application.routes.draw do
 
   put 'increase_quantity/:id/:quantity', to: 'items#increase_quantity'
   put 'decrease_quantity/:id/:quantity', to: 'items#decrease_quantity'
-  put 'rent_item/:id', to: 'items#rent_item'
+  get 'items/rent_item/:id', to: 'items#rent_item'
+  get 'organizations/:id/items', to: 'organizations#items', as: :org_items_path
   put 'return_item/:id', to: 'rented_items#return_item'
+  put 'join_org/:id', to: 'organizations#join_org'
+
+  resources :items
+  resources :logins
+  resources :rented_items
+  resources :organizations
+  resources :memberships
+  resources :users
+  resources :sessions, only: [:create]
+
+  root 'homes#home'
+
+  
   
   # post 'login' => 'login#login',:as => 'login'
 

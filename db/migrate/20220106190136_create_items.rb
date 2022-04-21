@@ -1,7 +1,7 @@
 class CreateItems < ActiveRecord::Migration
   def change
     create_table 'items' do |t|
-      t.string 'organization'
+      # t.string 'organization'
       t.string 'name'
       t.text 'description'
       t.string 'location'
@@ -9,6 +9,7 @@ class CreateItems < ActiveRecord::Migration
       t.decimal 'quantity_total'
       t.boolean 'rentable'
       t.float 'price'
+      t.belongs_to :organization, foreign_key: true
       # Add fields that let Rails automatically keep track
       # of when items are added or modified:
       t.timestamps

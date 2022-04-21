@@ -1,7 +1,7 @@
 class CreateRentedItem < ActiveRecord::Migration
   def change
     create_table :rented_items do |t|
-      t.string "organization"
+      # t.string "organization"
       t.string "item_id"
       t.string "user_renting"
       t.decimal "age"
@@ -10,6 +10,7 @@ class CreateRentedItem < ActiveRecord::Migration
       t.decimal "time_rented"
       t.decimal "max_rent_time"
       t.belongs_to :item, foreign_key: true
+      t.belongs_to :organization, foreign_key: true
       t.timestamps
     end
   end

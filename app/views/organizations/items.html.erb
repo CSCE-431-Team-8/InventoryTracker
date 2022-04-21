@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1> <%= @organization.name %> Inventory</h1>
+
+<%= form_tag(:org_items_path , method: :get) do %>
+  <p> Search for an item </p>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= hidden_field_tag(:sort, params[:sort]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= link_to "Product ID", :sort => "id", :search => params[:search]%></th>
+      <th><%= link_to "Organization", :sort => "organization", :search => params[:search]%></th>
+      <th><%= link_to "Name", :sort => "name", :search => params[:search]%></th>
+      <th>Description</th>
+      <th><%= link_to "Locations", :sort => "location", :search => params[:search]%></th>
+      <th><%= link_to "Quantity Remaining", :sort => "quantity_remaining", :search => params[:search]%></th>
+      <th>Rent</th>
+      <th><%= link_to "Price", :sort => "price", :search => params[:search]%></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.organization.name %></td>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= item.location %></td>
+        <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
+        <td><%= link_to "Rent", "items/rent_item/#{item.id}" %></td> <%# Instead of checkout it will be a button that checks the item out %>
+        <td><%= item.price %></td>
+        <td><%= link_to 'Show', item %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if User.find_by_id(session[:user_id]).memberships.where(admin: true).exists? %>
+  <%= link_to 'New Item', new_item_path %>
+<% end %>

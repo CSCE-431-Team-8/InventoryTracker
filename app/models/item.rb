@@ -1,11 +1,11 @@
 class Item < ActiveRecord::Base
     has_many :rented_items, dependent: :destroy
-    # belongs_to :organization
+    belongs_to :organization
 
     validates :name, presence: true
     validates :quantity_total, numericality: { greater_than_or_equal_to: 0}
     validates :quantity_remaining, presence: true
-    validates :rentable, inclusion: { in: [ true, false ] }
+    # validates :rentable, inclusion: { in: [ true, false ] }
 
     def add_rented_item(user)
         self.decrement!(:quantity_remaining, 1)
@@ -26,7 +26,7 @@ class Item < ActiveRecord::Base
         # where("description LIKE ?", "%#{search}%") 
         # where("location LIKE ?", "%#{search}%") 
         # where("id LIKE ?", "%#{search}%")
-        where("name LIKE ? OR description LIKE ? OR location LIKE ? OR cast(id as text) LIKE ? OR organization LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+        where("name LIKE ? OR description LIKE ? OR location LIKE ? OR cast(id as text) LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     end
 end
 

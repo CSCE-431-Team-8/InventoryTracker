@@ -6,15 +6,15 @@ class RentedItemsController < ApplicationController
   def index
     if params[:search]
       if params[:sort] != ""
-        @rented_items = RentedItem.search(params[:search]).order(params[:sort])
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
       else
-        @rented_items = RentedItem.search(params[:search]).order("item_id")
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("item_id")
       end
     else
       if params[:sort] != ""
-        @rented_items = RentedItem.order(params[:sort])
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
       else
-        @rented_items = RentedItem.order("item_id")
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order("item_id")
       end
     end
   end
@@ -43,7 +43,7 @@ class RentedItemsController < ApplicationController
         format.html { redirect_to @rented_item, notice: 'Rented item was successfully created.' }
         format.json { render :show, status: :created, location: @rented_item }
       else
-        format.html { render :new }
+        format.html { render "items/rent_item" }
         format.json { render json: @rented_item.errors, status: :unprocessable_entity }
       end
     end
@@ -89,6 +89,6 @@ class RentedItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rented_item_params
-      params.require(:rented_item).permit(:organization, :item_id, :user_renting, :age, :date_rented, :return_date, :time_rented, :max_rent_time)
+      params.require(:rented_item).permit(:renter_name, :address, :phone_number, :organization, :organization_id, :item_id, :user_renting, :age, :date_rented, :return_date, :time_rented, :max_rent_time)
     end
 end

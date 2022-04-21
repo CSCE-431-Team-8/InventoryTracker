@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :increase_quantity, :decrease_quantity]
+  # skip_before_filter :require_login, only: [:index, :show]
 
   # GET /items
   # GET /items.json
@@ -7,19 +8,19 @@ class ItemsController < ApplicationController
     if params[:search]
       # @items = Item.search(params[:search])
       if params[:sort] != "quantity_remaining"
-        @items = Item.search(params[:search]).order(params[:sort])
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
       elsif params[:sort] == "quantity_remaining"
-        @items = Item.search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
       else
-        @items = Item.search(params[:search]).order("id")
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("id")
       end
     else
       if params[:sort] != "quantity_remaining"
-        @items = Item.order(params[:sort])
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
       elsif params[:sort] == "quantity_remaining"
-        @items = Item.all.sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.quantity_remaining / item.quantity_total}
       else
-        @items = Item.order("id")
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order("id")
       end
     end
   end
@@ -92,11 +93,14 @@ class ItemsController < ApplicationController
 
   def rent_item
     @item = Item.find_by_id(params[:id])
-    @userName = User.find_by_id(session[:user_id]).name
-    @item.add_rented_item(@userName)
-    respond_to do |format|
-      format.js {render inline: "location.reload();" }
-    end
+    @item.decrement!(:quantity_remaining, 1)
+    @rented_item = RentedItem.new
+    @rented_item.item = @item
+    @rented_item.item_id = @item.id
+    @rented_item.user_renting = current_user().name
+    @rented_item.date_rented = Date.today.to_s
+    @rented_item.return_date = Date.today + 14
+    @rented_item.organization = @item.organization
   end
 
   # DELETE /items/1
@@ -117,7 +121,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:id, :organization, :location, :name, :description, :quantity_remaining, :quantity_total, :rentable, :price)
+      params.require(:item).permit(:id, :organization, :organization_id, :location, :name, :description, :quantity_remaining, :quantity_total, :rentable, :price)
     end
 
 end

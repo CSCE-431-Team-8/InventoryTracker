@@ -4,11 +4,22 @@ Feature: View inventory page
   So that I can find the items in the inventory
   I want to be able to see the properties of my items
 
-Background: There is a table of items in the inventory page
+
+Background: I am signed in and part of an organization and there are items in the list
+
+Given I am signed in with provider "google_oauth2"
+
+Given the following organizations exist:
+    | name |
+    | TAMU |
+    | SWE  |
+
+Given I am part of an organization
 
 Given the following items exist:
-    | organization | name     | description | location | quantity_remaining| quantity_total | rentable | price |
-    | TAMU         | golf ball   | ball of golf      | locker   | 5                  |     5        | false    | 10     |
+    | name     | description | location | quantity_remaining| quantity_total | rentable | price           | organization_id |
+    | golf ball   | ball of golf      | locker   | 5                  |     5        | false    | 10     | 1                |
+    | soccer ball   | ball of socker      | locker   | 5                  |     5        | false    | 10     | 2              |
 
     # t.string 'organization'
     # t.string 'name'

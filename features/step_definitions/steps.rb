@@ -43,6 +43,23 @@ Given /the following rented items exist/ do |rented_table|
   end
 end
 
+Given('I am part of an organization') do 
+  @org = Organization.find_by_id('1')
+  @user = User.find_by_id('1')
+  @org.join_org(@user)
+end
+
+Given /the following organizations exist/ do |organizations|
+  organizations.hashes.each do |org|
+    Organization.create org
+  end
+end
+
+Given /^I am signed in with provider "([^"]*)"$/ do |provider|
+  visit "/auth/#{provider.downcase}"
+end
+
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
@@ -85,15 +102,18 @@ When /^I remove an item$/ do
 When('I fill in {string} with {string}') do |field, value|
   fill_in(field, with: value)
 end
+
+When('I select {string} in {string}') do |value, field|
+  #select(value, from: field).select_option
+  select value, :from => field
+end
+
 # ------------ #
 
-When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
-end
 
-When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
-  fill_in(field, :with => value)
-end
+# When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
+#   fill_in(field, :with => value)
+# end
 
 # Use this to fill in an entire form with data from a table. Example:
 #

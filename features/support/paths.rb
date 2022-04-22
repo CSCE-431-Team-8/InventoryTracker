@@ -23,7 +23,12 @@ module NavigationHelpers
         "Remove"
       when /^the rented items page$/
         '/rented_items'
-
+      when /^the organizations page$/
+        '/organizations'
+      when /^the memberships page$/
+        '/memberships'
+      when /^new items page$/
+        '/items/new'
         
   
       # Add more mappings here.

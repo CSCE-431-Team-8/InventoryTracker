@@ -10,7 +10,22 @@ class OrganizationsController < ApplicationController
   def join_org
     @org = Organization.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
-    @org.join_org(@user)
+    # @org.join_org(@user)
+
+    @membership = Membership.new
+    @membership.organization = @org
+    @membership.user = @user
+    @membership.admin = false
+
+    respond_to do |format|
+      if @membership.save
+        format.html { redirect_to memberships_url, notice: "You have successfully joined #{@org.name}." }
+        format.json { render memberships_url, status: :created, location: @membership }
+      else
+        format.html { redirect_to organizations_url, notice: "Unable to join #{@org.name}! You might already be a member!" }
+        format.json { render json: @membership.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def items

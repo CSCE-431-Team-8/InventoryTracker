@@ -21,7 +21,7 @@
         <td><%= organization.description %></td>
         <td><%= number_to_phone(organization.phone_number, area_code: true) %></td>
         <td><%= organization.address %></td>
-        <td><%= link_to "Join", join_org_path_url(organization.id), :remote => true, :method => :get %></td>
+        <td><%= link_to "Join", join_org_path_url(organization.id) %></td>
         <td><%= link_to 'Show', organization %></td>
       </tr>
     <% end %>

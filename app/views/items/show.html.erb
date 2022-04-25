@@ -45,7 +45,7 @@
   <%= @item.price %>
 </p>
 
-<%= link_to "Rent", "rent_item/#{@item.id}", :remote => true, :method => :put %><br><br>
+<%= link_to "Rent", rent_item_path_url(@item.id) %><br><br>
 
 <% if Membership.where(organization: @item.organization, user: session[:user_id], admin: true).exists? %>
   <%= link_to 'Edit', edit_item_path(@item) %> |

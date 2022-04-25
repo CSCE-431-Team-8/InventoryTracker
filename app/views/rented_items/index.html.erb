@@ -38,7 +38,7 @@
         <td><%= rented_item.address %></td>
         <td><%= rented_item.date_rented %></td>
         <td><%= rented_item.return_date %></td>
-        <td><%= link_to "Return", "return_item/#{rented_item.id}", :remote => true, :method => :put %></td>
+        <td><%= link_to "Return", return_item_path_url(rented_item.id) %></td>
         <td><%= link_to 'Show', rented_item %></td>
       </tr>
     <% end %>

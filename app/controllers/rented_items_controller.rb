@@ -81,7 +81,8 @@ class RentedItemsController < ApplicationController
     @rented_item = RentedItem.find_by_id(params[:id])
     @rented_item.return_item
     respond_to do |format|
-      format.js {render inline: "location.reload();" }
+      format.html { redirect_to rented_items_url, notice: 'Rented item was successfully returned.' }
+      format.json { head :no_content }
     end
   end
 

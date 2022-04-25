@@ -35,6 +35,8 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'dotenv-rails'
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

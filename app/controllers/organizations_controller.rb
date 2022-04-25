@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = Organization.all.paginate(:page => params[:page])
   end
 
   def join_org
@@ -18,26 +18,26 @@ class OrganizationsController < ApplicationController
     if params[:search]
       # @items = Item.search(params[:search])
       if params[:sort] != "quantity_remaining"
-        @items = Item.where(organization: params[:id]).search(params[:search]).order(params[:sort])
+        @items = Item.where(organization: params[:id]).search(params[:search]).order(params[:sort]).paginate(:page => params[:page])
       elsif params[:sort] == "quantity_remaining"
-        @items = Item.where(organization: params[:id]).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: params[:id]).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}.paginate(:page => params[:page])
       else
-        @items = Item.where(organization: params[:id]).search(params[:search]).order("id")
+        @items = Item.where(organization: params[:id]).search(params[:search]).order("id").paginate(:page => params[:page])
       end
     else
       if params[:sort] != "quantity_remaining"
-        @items = Item.where(organization: params[:id]).order(params[:sort])
+        @items = Item.where(organization: params[:id]).order(params[:sort]).paginate(:page => params[:page])
       elsif params[:sort] == "quantity_remaining"
-        @items = Item.where(organization: params[:id]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: params[:id]).sort_by{|item| item.quantity_remaining / item.quantity_total}.paginate(:page => params[:page])
       else
-        @items = Item.where(organization: params[:id]).order("id")
+        @items = Item.where(organization: params[:id]).order("id").paginate(:page => params[:page]).paginate(:page => params[:page])
       end
     end
   end
 
   def members
     @organization = Organization.find_by_id(params[:id])
-    @members = Membership.where(organization: params[:id])
+    @members = Membership.where(organization: params[:id]).paginate(:page => params[:page])
   end
 
   # GET /organizations/1

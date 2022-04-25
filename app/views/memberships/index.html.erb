@@ -19,12 +19,13 @@
         <td><%= membership.user.name %></td>
         <td><%= membership.admin %></td>
         <td><%= link_to 'Show', membership %></td>
-        <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
+        <%# <td><%= link_to 'Edit', edit_membership_path(membership) %>
         <td><%= link_to 'Leave', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @memberships %>
 
 <br>
 

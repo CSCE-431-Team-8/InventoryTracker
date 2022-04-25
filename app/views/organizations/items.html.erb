@@ -33,13 +33,14 @@
         <td><%= item.description %></td>
         <td><%= item.location %></td>
         <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
-        <td><%= link_to "Rent", "items/rent_item/#{item.id}" %></td> <%# Instead of checkout it will be a button that checks the item out %>
+        <td><%= link_to "Rent", rent_item_path_url(item.id) %></td> <%# Instead of checkout it will be a button that checks the item out %>
         <td><%= item.price %></td>
         <td><%= link_to 'Show', item %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @items %>
 
 <br>
 

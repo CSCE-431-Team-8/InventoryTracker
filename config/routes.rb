@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get 'organizations/:id/items', to: 'organizations#items', as: :org_items_path
   get 'organizations/:id/members', to: 'organizations#members', as: :org_members_path
   put 'return_item/:id', to: 'rented_items#return_item'
-  put 'join_org/:id', to: 'organizations#join_org'
+  put 'join_org/:id', to: 'organizations#join_org', as: :join_org_path
+  put 'membership/:id/destroy', to: 'memberships#destroy'
 
   resources :items
   resources :logins

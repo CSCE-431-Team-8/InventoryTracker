@@ -5,11 +5,20 @@
   <%= @organization.name %>
 </p>
 
-<%= link_to 'View Items', :org_items_path %> |
+<%= link_to 'View Items', :org_items_path %>
 
 <% if User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @organization.id).exists? %>
+     |
     <%= link_to 'View Members', :org_members_path %> |
     <%= link_to 'Edit', edit_organization_path(@organization) %> |
-    <%= link_to 'Destroy', @organization, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+    <%= link_to 'Destroy', @organization, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %><br> 
+<%= link_to "Join", join_org_path_url(@organization.id), :remote => true, :method => :put %>
+<% if User.find_by_id(session[:user_id]).memberships.where(organization: @organization.id).exists?%>
+ | 
+ <% Membership.where(organization: @organization.id, user: session[:user_id]).each do |membership| %>
+    <%= link_to 'Leave', membership, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
 <% end %>
+<br>
 <%= link_to 'Back', :back %>

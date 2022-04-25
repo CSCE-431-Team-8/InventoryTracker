@@ -19,7 +19,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to memberships_url, notice: "You have successfully joined #{@org.name}." }
+        format.html { redirect_to organizations_url, notice: "You have successfully joined #{@org.name}." }
         format.json { render memberships_url, status: :created, location: @membership }
       else
         format.html { redirect_to organizations_url, notice: "Unable to join #{@org.name}! You might already be a member!" }

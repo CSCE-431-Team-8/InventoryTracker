@@ -8,23 +8,23 @@ class ItemsController < ApplicationController
     if params[:search]
       # @items = Item.search(params[:search])
       if params[:sort] == "quantity_remaining"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.quantity_remaining / item.quantity_total}.paginate(:page => params[:page])
       elsif params[:sort] == "organization"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.organization.name}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.organization.name}.paginate(:page => params[:page])
       elsif params[:sort] != "quantity_remaining" || params[:sort] != "organization"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort]).paginate(:page => params[:page])
       else
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("id")
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("id").paginate(:page => params[:page])
       end
     else
       if params[:sort] == "quantity_remaining"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.quantity_remaining / item.quantity_total}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.quantity_remaining / item.quantity_total}.paginate(:page => params[:page])
       elsif params[:sort] == "organization"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.organization.name}
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.organization.name}.paginate(:page => params[:page])
       elsif params[:sort] != "quantity_remaining"
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort]).paginate(:page => params[:page])
       else
-        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order("id")
+        @items = Item.where(organization: User.find_by_id(session[:user_id]).organizations).order("id").paginate(:page => params[:page])
       end
     end
   end

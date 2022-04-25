@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.where(user: session[:user_id])
+    @memberships = Membership.where(user: session[:user_id]).paginate(:page => params[:page])
   end
 
   # GET /memberships/1

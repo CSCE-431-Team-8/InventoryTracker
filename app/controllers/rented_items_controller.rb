@@ -6,19 +6,19 @@ class RentedItemsController < ApplicationController
   def index
     if params[:search]
       if params[:sort] != "organization"
-        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort])
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order(params[:sort]).paginate(:page => params[:page])
       elsif params[:sort] == "organization"
-        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.organization.name}
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).sort_by{|item| item.organization.name}.paginate(:page => params[:page])
       else
-        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("item_id")
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).search(params[:search]).order("item_id").paginate(:page => params[:page])
       end
     else
       if params[:sort] != "organization"
-        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort])
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order(params[:sort]).paginate(:page => params[:page])
       elsif params[:sort] == "organization"
-        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.organization.name}
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).sort_by{|item| item.organization.name}.paginate(:page => params[:page])
       else
-        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order("item_id")
+        @rented_items = RentedItem.where(organization: User.find_by_id(session[:user_id]).organizations).order("item_id").paginate(:page => params[:page])
       end
     end
   end

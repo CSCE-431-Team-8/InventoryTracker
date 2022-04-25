@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-organizationTAMU = Organization.create!({:name => "TAMU"})
-organizationSWE = Organization.create!({:name => "SWE"})
+organizationTAMU = Organization.create!({:name => "TAMU", :phone_number => "9798453211", :description => "Texas A&M University", :address => "Administration Building, 400 Bizzell St, College Station, TX 77843"})
+organizationSWE = Organization.create!({:name => "SWE", :phone_number => "5555555555", :description => "Society of Women Engineers", :address => "1 Tamu Way"})
 
 more_items = [
     {:name => 'Golf Ball', :description => 'A ball for golf', :quantity_remaining => 20, 

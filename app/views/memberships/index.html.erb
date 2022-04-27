@@ -14,7 +14,7 @@
 
   <tbody>
     <% @memberships.each do |membership| %>
-      <tr>
+      <tr onclick="location.href='<%= membership_path(membership) %>'">
         <td><%= membership.organization.name %></td>
         <td><%= membership.user.name %></td>
         <td><%= membership.admin %></td>

@@ -17,7 +17,7 @@
   <%= @organization.address %>
 </p>
 
-
+<p>
 <%= link_to 'View Items', :org_items_path %>
 
 <% if User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @organization.id).exists? %>
@@ -35,3 +35,4 @@
 <% end %>
 <br>
 <%= link_to 'Back', organizations_path %>
+</p>

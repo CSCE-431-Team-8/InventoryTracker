@@ -26,7 +26,7 @@
 
   <tbody>
     <% @rented_items.each do |rented_item| %>
-      <tr>
+      <tr onclick="location.href='<%= rented_item_path(rented_item) %>'">
         <td><%= rented_item.organization.name %></td>
         <td><%= rented_item.item_id %></td>
         <td><%= rented_item.user_renting %></td>

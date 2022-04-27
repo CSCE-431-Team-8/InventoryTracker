@@ -26,7 +26,7 @@
 
   <tbody>
     <% @items.each do |item| %>
-      <tr>
+      <tr onclick="location.href='<%= item_path(item) %>'">
         <td><%= item.id %></td>
         <td><%= item.organization.name %></td>
         <td><%= link_to item.name, item %></td>

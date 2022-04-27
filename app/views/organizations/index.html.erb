@@ -15,7 +15,7 @@
 
   <tbody>
     <% @organizations.each do |organization| %>
-      <tr>
+      <tr onclick="location.href='<%= organization_path(organization) %>'">
         <td><%= link_to organization.name, organization %></td>
         <td><%= organization.description %></td>
         <td><%= number_to_phone(organization.phone_number, area_code: true) %></td>

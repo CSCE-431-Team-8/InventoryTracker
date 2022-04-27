@@ -2,7 +2,7 @@
 
 <h1>Listing Organizations</h1>
 
-<table>
+<table class="table table-striped table-hover align-middle table-responsive">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,19 +10,17 @@
       <th>Phone Number</th>
       <th>Address</th>
       <th>Join</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @organizations.each do |organization| %>
       <tr>
-        <td><%= organization.name %></td>
+        <td><%= link_to organization.name, organization %></td>
         <td><%= organization.description %></td>
         <td><%= number_to_phone(organization.phone_number, area_code: true) %></td>
         <td><%= organization.address %></td>
         <td><%= link_to "Join", join_org_path_url(organization.id) %></td>
-        <td><%= link_to 'Show', organization %></td>
       </tr>
     <% end %>
   </tbody>

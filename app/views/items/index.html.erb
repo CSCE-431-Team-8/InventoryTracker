@@ -9,7 +9,7 @@
   <%= submit_tag ("Search") %>
 <% end %>
 
-<table>
+<table class="table table-striped table-hover align-middle table-responsive">
   <thead>
     <tr>
       <th><%= link_to "Product ID", :sort => "id", :search => params[:search]%></th>
@@ -18,9 +18,9 @@
       <th>Description</th>
       <th><%= link_to "Locations", :sort => "location", :search => params[:search]%></th>
       <th><%= link_to "Quantity Remaining", :sort => "quantity_remaining", :search => params[:search]%></th>
-      <th>Rent</th>
+      <th><%= link_to "Quantity Total", :sort => "quantity_total", :search => params[:search]%></th>
       <th><%= link_to "Price", :sort => "price", :search => params[:search]%></th>
-      <th colspan="3"></th>
+      <th>Rent</th>
     </tr>
   </thead>
 
@@ -29,13 +29,13 @@
       <tr>
         <td><%= item.id %></td>
         <td><%= item.organization.name %></td>
-        <td><%= item.name %></td>
+        <td><%= link_to item.name, item %></td>
         <td><%= item.description %></td>
         <td><%= item.location %></td>
-        <td><%= item.quantity_remaining %>/<%= item.quantity_total %></td>
-        <td><%= link_to "Rent", "items/rent_item/#{item.id}" %></td> <%# Instead of checkout it will be a button that checks the item out %>
-        <td><%= item.price %></td>
-        <td><%= link_to 'Show', item %></td>
+        <td><%= number_with_precision(item.quantity_remaining, precision: 0) %></td>
+        <td><%= number_with_precision(item.quantity_total,precision: 0) %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= link_to "Rent", "items/rent_item/#{item.id}" %></td>
       </tr>
     <% end %>
   </tbody>

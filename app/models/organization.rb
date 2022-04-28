@@ -15,4 +15,8 @@ class Organization < ActiveRecord::Base
         i.admin = false
         i.save!
     end
+
+    def self.search(search)
+        where("name LIKE ? ", "%#{search}%")
+    end
 end

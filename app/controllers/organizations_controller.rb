@@ -4,7 +4,13 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all.paginate(:page => params[:page])
+    # @organizations = Organization.all.paginate(:page => params[:page])
+    if params[:search]
+      # @items = Item.search(params[:search])
+      @organizations = Organization.all.order("name").search(params[:search]).paginate(:page => params[:page])
+    else
+      @organizations = Organization.all.order("name").paginate(:page => params[:page])
+    end
   end
 
   def join_org

@@ -1,55 +1,78 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag 'application', media: 'all' %>
 
-<p>
-  <strong>Product:</strong>
-  <%= @item.id %>
-</p>
+<div class="formBody" style="margin-top:2%;" >
 
-<p>
-  <strong>Organization:</strong>
-  <%= @item.organization.name %>
-</p>
+    <div class="customForm">
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+      <p>
+        <strong>Product:</strong>
+        <%= @item.id %>
+      </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @item.location %>
-</p>
+      <p>
+        <strong>Organization:</strong>
+        <%= @item.organization.name %>
+      </p>
 
-<p>
-  <strong>Quantity remaining:</strong>
-  <%= @item.quantity_remaining %>
-</p>
+      <p>
+        <strong>Name:</strong>
+        <%= @item.name %>
+      </p>
 
-<p>
-  <strong>Quantity total:</strong>
-  <%= @item.quantity_total %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @item.description %>
+      </p>
 
-<p>
-  <strong>Rentable:</strong>
-  <%= @item.rentable %>
-</p>
+      <p>
+        <strong>Location:</strong>
+        <%= @item.location %>
+      </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
+      <p>
+        <strong>Quantity remaining:</strong>
+        <%= @item.quantity_remaining %>
+      </p>
+
+      <p>
+        <strong>Quantity total:</strong>
+        <%= @item.quantity_total %>
+      </p>
+
+      <p>
+        <strong>Rentable:</strong>
+        <%= @item.rentable %>
+      </p>
+
+      <p>
+        <strong>Price:</strong>
+        <%= @item.price %>
+      </p>
+
+      <div class="btn btn-secondary btn-sm">
+        <%= link_to "Rent", rent_item_path_url(@item.id), {:style=>'color:#FFFFFF; text-decoration:none'} %>
+      </div>
+
+    </div>
+</div>
 
 <%= link_to "Rent", rent_item_path_url(@item.id) %><br><br>
 
+<div class=formBody>
 <% if Membership.where(organization: @item.organization, user: session[:user_id], admin: true).exists? %>
-  <%= link_to 'Edit', edit_item_path(@item) %> |
-  <%= link_to 'Remove', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Edit', edit_item_path(@item), {:style=>'color:#FFFFFF;', :class => "btn btn-secondary btn-sm"}  %> |
+  <div class = "btn btn-secondary btn-sm">
+    <%= link_to 'Remove', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  |
+  
 <% end %>
 
 <%= link_to 'Back', :back %>
+</div>
+
+
+
+

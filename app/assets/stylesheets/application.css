@@ -13,8 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url(https://fonts.googleapis.com/css?family=Roboto);
  body{
    margin: 0;
+   font-family: 'Roboto', sans-serif;
  }
 
  header{
@@ -74,3 +77,29 @@
   div {
     /*margin-left: 10px;*/
   }
+
+.formBody {
+  text-align: center;
+  margin-left: 25%;
+  margin-right:25%;
+}
+.field {
+  margin-top: 10px;
+}
+.customForm {
+  display: inline-block;
+  margin-left: 25%;
+  margin-right:25%;
+  width: 50%;
+  background: #f2f2f2;
+  border-radius: 2px;
+  text-align: left;
+
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+
+  box-shadow: 3px 3px 2px rgb(151, 150, 150);
+
+}

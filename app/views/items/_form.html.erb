@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  
   <%= f.hidden_field :id %>
-  <div class="field">
+  <div class="field" style>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
@@ -41,7 +41,9 @@
     <%= f.label :price %><br>
     <%= f.text_field :price %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" style='margin-top: 10px'>
+    <%= f.submit :Submit, class: 'btn btn-secondary'%>
+    
   </div>
+  
 <% end %>

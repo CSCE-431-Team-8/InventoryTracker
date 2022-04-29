@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'return_item/:id', to: 'rented_items#return_item', as: :return_item_path
   get 'join_org/:id', to: 'organizations#join_org', as: :join_org_path
   put 'membership/:id/destroy', to: 'memberships#destroy'
+  
+  delete '/sessions', to: 'sessions#destroy'
 
   resources :items
   resources :logins

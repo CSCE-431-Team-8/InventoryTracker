@@ -18,14 +18,16 @@
         <td><%= membership.organization.name %></td>
         <td><%= membership.user.name %></td>
         <td><%= membership.admin %></td>
-        <td><%= link_to 'Show', membership %></td>
-        <%# <td><%= link_to 'Edit', edit_membership_path(membership) %>
-        <td><%= link_to 'Leave', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Leave', membership, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= will_paginate @memberships %>
+
+<% if !@memberships.any? %>
+  <p class="text-center">No Memberships Found.</p>
+<% end %>
 
 <br>
 

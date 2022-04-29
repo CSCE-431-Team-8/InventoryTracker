@@ -33,6 +33,9 @@
   </tbody>
 </table>
 <%= will_paginate @organizations %>
+<% if !@organizations.any? %>
+  <p class="text-center">No Organizations Found.</p>
+<% end %>
 
 <br>
 

@@ -1,5 +1,10 @@
-<h1>New Organization</h1>
+<h1 style="text-align:center; margin-bottom: 2rem;">New Organization</h1>
 
-<%= render 'form' %>
+<div class="formBody">
+    <div class="customForm">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="history.back();" style="background: grey">Back</button>
+        <%= render 'form' %>
+    </div>
+</div>
 
-<%= link_to 'Back', :back %>
+<%# <%= link_to 'Back', :back %>

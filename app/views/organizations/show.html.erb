@@ -1,38 +1,54 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag 'application', media: 'all' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @organization.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @organization.description %>
-</p>
-<p>
-  <strong>Phone Number:</strong>
-  <%= number_to_phone(@organization.phone_number, area_code: true) %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @organization.address %>
-</p>
+<div class="formBody" style="margin-top:2%;" >
+    <div class="customForm">
+      <%= link_to 'Back', :back, {:style=>'color:#FFFFFF text-decoration:none; margin-top:5px;', :class => "btn btn-secondary btn-sm"}   %>
+      <p id="notice"><%= notice %></p>
+      <p>
+        <strong>Name:</strong>
+        <%= @organization.name %>
+      </p>
+      <p>
+        <strong>Description:</strong>
+        <%= @organization.description %>
+      </p>
+      <p>
+        <strong>Phone Number:</strong>
+        <%= number_to_phone(@organization.phone_number, area_code: true) %>
+      </p>
+      <p>
+        <strong>Address:</strong>
+        <%= @organization.address %>
+      </p>
 
-<p>
-<%= link_to 'View Items', :org_items_path %>
+      <p>
+      <div class="btn btn-secondary btn-sm">
+        <%= link_to 'View Items', :org_items_path, {:style=>'color:#FFFFFF; text-decoration:none'} %>
+      </div>
 
-<% if User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @organization.id).exists? %>
-     |
-    <%= link_to 'View Members', :org_members_path %> |
-    <%= link_to 'Edit', edit_organization_path(@organization) %> |
-    <%= link_to 'Destroy', @organization, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %><br> 
-<%= link_to "Join", join_org_path_url(@organization.id) %>
-<% if User.find_by_id(session[:user_id]).memberships.where(organization: @organization.id).exists?%>
- | 
- <% Membership.where(organization: @organization.id, user: session[:user_id]).each do |membership| %>
-    <%= link_to 'Leave', membership, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
+
+<div class="formBody">
+  <% if User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @organization.id).exists? %>
+      <%= link_to 'View Members', :org_members_path, {:style=>'color:#FFFFFF text-decoration:none;', :class => "btn btn-secondary btn-sm"} %> |
+      <%= link_to 'Edit', edit_organization_path(@organization), {:style=>'color:#FFFFFF text-decoration:none;', :class => "btn btn-secondary btn-sm"} %> |
+       <div class = "btn btn-secondary btn-sm">
+          <%= link_to 'Destroy', @organization, method: :delete, data: { confirm: 'Are you sure?' }, style: "color:#FFFFFF; text-decoration:none;" %>
+        </div>
+  <% end %><br> 
+    <%= link_to "Join", join_org_path_url(@organization.id), {:style=>'color:#FFFFFF text-decoration:none; margin-top:5px', :class => "btn btn-secondary btn-sm"} %>
+    
+    
+    <% if User.find_by_id(session[:user_id]).memberships.where(organization: @organization.id).exists?%>
+    |
+    <% Membership.where(organization: @organization.id, user: session[:user_id]).each do |membership| %>
+    <div class = "btn btn-secondary btn-sm" style="margin-top:5px">
+        <%= link_to 'Leave', membership, method: :delete, data: { confirm: 'Are you sure?' }, style: "color:#FFFFFF; text-decoration:none; " %>
+        </div>
+        <% end %>
     <% end %>
-<% end %>
-<br>
-<%= link_to 'Back', organizations_path %>
-</p>
+  <br>
+
+  </p>
+</div>

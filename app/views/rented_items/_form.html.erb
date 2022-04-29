@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :organization %><br>
     <%= f.collection_select :organization_id, Organization.all, :id, :name, prompt: true %>
@@ -39,8 +38,10 @@
   </div>
     <%= f.hidden_field :time_rented %>
     <%= f.hidden_field :max_rent_time %>
+    
+     <div class="actions" style='margin-top: 10px'>
+    <%= f.submit :Submit, class: 'btn btn-secondary'%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
   </div>
+ 
 <% end %>

@@ -1,19 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag 'application', media: 'all' %>
 
-<p>
-  <strong>Organization:</strong>
-  <%= @membership.organization.name %>
-</p>
+<div class="formBody" style="margin-top:2%;" >
 
-<p>
-  <strong>User:</strong>
-  <%= @membership.user.name %>
-</p>
+    <div class="customForm">
 
-<p>
-  <strong>Admin?:</strong>
-  <%= @membership.admin %>
-</p>
+      <p id="notice"><%= notice %></p>
+      <p>
+        <strong>Organization:</strong>
+        <%= @membership.organization.name %>
+      </p>
 
-<%# <%= link_to 'Edit', edit_membership_path(@membership) %>
-<%= link_to 'Back', :back %>
+      <p>
+        <strong>User:</strong>
+        <%= @membership.user.name %>
+      </p>
+
+      <p>
+        <strong>Admin?:</strong>
+        <%= @membership.admin %>
+      </p>
+
+      <%# <%= link_to 'Edit', edit_membership_path(@membership) %>
+      
+  </div>
+  <%= link_to 'Back', :back, {:style=>'color:#FFFFFF text-decoration:none; margin-top:5px;', :class => "btn btn-secondary btn-sm"}   %>
+</div>

@@ -1,46 +1,57 @@
+<%= stylesheet_link_tag 'application', media: 'all' %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Organization:</strong>
-  <%= @rented_item.organization.name %>
-</p>
+<div class="formBody">
+  <div class="customForm">
+    <p>
+      <strong>Organization:</strong>
+      <%= @rented_item.organization.name %>
+    </p>
 
-<p>
-  <strong>Item:</strong>
-  <%= @rented_item.item_id %>
-</p>
+    <p>
+      <strong>Item:</strong>
+      <%= @rented_item.item_id %>
+    </p>
 
-<p>
-  <strong>Helped By:</strong>
-  <%= @rented_item.user_renting %>
-</p>
+    <p>
+      <strong>Helped By:</strong>
+      <%= @rented_item.user_renting %>
+    </p>
 
-<p>
-  <strong>Rented By:</strong>
-  <%= @rented_item.renter_name %>
-</p>
+    <p>
+      <strong>Rented By:</strong>
+      <%= @rented_item.renter_name %>
+    </p>
 
-<p>
-  <strong>Phone Number:</strong>
-  <%= number_to_phone(@rented_item.phone_number, area_code: true) %>
-</p>
+    <p>
+      <strong>Phone Number:</strong>
+      <%= number_to_phone(@rented_item.phone_number, area_code: true) %>
+    </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @rented_item.address %>
-</p>
+    <p>
+      <strong>Address:</strong>
+      <%= @rented_item.address %>
+    </p>
 
-<p>
-  <strong>Date rented:</strong>
-  <%= @rented_item.date_rented %>
-</p>
+    <p>
+      <strong>Date rented:</strong>
+      <%= @rented_item.date_rented %>
+    </p>
 
-<p>
-  <strong>Return date:</strong>
-  <%= @rented_item.return_date %>
-</p>
+    <p>
+      <strong>Return date:</strong>
+      <%= @rented_item.return_date %>
+    </p>
+  </div>
+  <div class="formBody" style="margin-top:2%">
+    <%= link_to 'Edit', edit_rented_item_path(@rented_item), {:style=>'color:#FFFFFF text-decoration:none;', :class => "btn btn-secondary btn-sm"} %> |
+    <%= link_to "Return", return_item_path_url(@rented_item.id), {:style=>'color:#FFFFFF text-decoration:none;', :class => "btn btn-secondary btn-sm"} %> |
+    <%= link_to 'Back', rented_items_path , {:style=>'color:#FFFFFF text-decoration:none;', :class => "btn btn-secondary btn-sm"}   %>
+    
+  </div>
+</div>
 
-<%= link_to "Return", return_item_path_url(@rented_item.id) %><br><br>
 
-<%= link_to 'Edit', edit_rented_item_path(@rented_item) %> |
-<%= link_to 'Back', rented_items_path %>
+<%# <%= link_to "Return", return_item_path_url(@rented_item.id) %>
+<%# <%= link_to 'Back', rented_items_path %> 

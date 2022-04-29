@@ -25,6 +25,9 @@
   </tbody>
 </table>
 <%= will_paginate @members %>
+<% if !@members.any? %>
+  <p class="text-center">No Members Found.</p>
+<% end %>
 
 <br>
 

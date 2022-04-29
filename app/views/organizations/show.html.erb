@@ -28,6 +28,12 @@
 </div>
 
 <div class="formBody">
+
+  <% if User.find_by_id(session[:user_id]).memberships.where(organization: @organization.id).exists?%>
+    <div class="btn btn-secondary btn-sm">
+      <%= link_to 'View Items', :org_items_path, {:style=>'color:#FFFFFF; text-decoration:none'} %>
+    </div>
+  <% end %>
   <% if User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @organization.id).exists? %>
       <div class="btn btn-secondary btn-sm">
         <%= link_to 'View Items', :org_items_path, {:style=>'color:#FFFFFF; text-decoration:none'} %>

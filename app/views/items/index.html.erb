@@ -41,6 +41,9 @@
   </tbody>
 </table>
 <%= will_paginate @items %>
+<% if !@items.any? %>
+  <p class="text-center">No Items Found.</p>
+<% end %>
 
 <br>
 

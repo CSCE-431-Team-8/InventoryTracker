@@ -25,6 +25,10 @@
 </table>
 <%= will_paginate @memberships %>
 
+<% if !@memberships.any? %>
+  <p class="text-center">No Memberships Found.</p>
+<% end %>
+
 <br>
 
 <%# <%= link_to 'New Membership', new_membership_path %>

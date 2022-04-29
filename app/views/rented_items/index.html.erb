@@ -43,4 +43,8 @@
 </table>
 <%= will_paginate @rented_items, class: 'btn btn-secondary' %>
 
+<% if !@rented_items.any? %>
+  <p class="text-center">No Rented Items Found.</p>
+<% end %>
+
 <br>

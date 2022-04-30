@@ -1,11 +1,19 @@
-<%# <form action="/logins">
-  <input type="submit" value="Sign In">
-</form>
-<form>
-  <input type="submit" value="Sign Up">
-</form> %>
-
-<%# <%= button_to "Log in with Google", '/auth/google_oauth2'  %>
-<%= form_tag('/auth/google_oauth2', method: 'post') do %>
-  <button type='submit'>Login with Google</button>
-<% end %>
+<div class="containter-fluid">
+    <div class="col-md-8 mx-auto">
+      <div class="row mx-auto">
+        <div class="col-sm-4 mx-auto">
+          <%= image_tag("keyboard_key_i.png", size: "150x150", class: "img-fluid d-block mx-auto")%>
+        </div>
+      </div>
+      <div class="row mx-auto">
+        <div class="col mx-auto">
+          <h1 class="text-center">Simple Inventory</h1>
+        </div>
+      </div>
+      <%= form_tag('/auth/google_oauth2', method: 'post', class: "row mt-3 g-3") do %>
+        <div class="col-sm-3 mx-auto">
+          <button type='submit', class="btn btn-secondary form-control"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Login with Google</button>
+        </div>
+      <% end %>
+    </div>
+</div>

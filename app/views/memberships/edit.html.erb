@@ -1,6 +1,11 @@
 <h1>Editing Membership</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @membership %> |
-<%= link_to 'Back', :back %>
+<div class="formBody">
+    <div class="customForm">
+        <%= render 'form' %>
+    </div>
+    <div class="formBody" style="margin-top:2%">
+        <%= link_to 'Show', @membership, {:style=>'color:#FFFFFF text-decoration:none;', :class => "btn btn-secondary btn-sm"} %> |
+        <%= link_to 'Back', :back, {:style=>'color:#FFFFFF text-decoration:none;', :class => "btn btn-secondary btn-sm"}   %>
+    </div>
+</div>

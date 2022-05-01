@@ -48,7 +48,7 @@
 <br>
 
 <% if User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @organization.id).exists? %>
-  <%= link_to 'New Item', new_item_path %> | 
+  <%= link_to 'New Item', new_item_path, class: 'btn btn-secondary'  %> | 
 <% end %>
 
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', :back, class: 'btn btn-secondary'  %>

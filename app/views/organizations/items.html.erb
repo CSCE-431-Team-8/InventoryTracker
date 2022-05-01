@@ -19,8 +19,8 @@
       <th><%= link_to "Locations", :sort => "location", :search => params[:search]%></th>
       <th><%= link_to "Quantity Remaining", :sort => "quantity_remaining", :search => params[:search]%></th>
       <th><%= link_to "Quantity Total", :sort => "quantity_total", :search => params[:search]%></th>
-      <th>Rent</th>
       <th><%= link_to "Price", :sort => "price", :search => params[:search]%></th>
+      <th>Rent</th>
     </tr>
   </thead>
 
@@ -34,8 +34,8 @@
         <td><%= item.location %></td>
         <td><%= number_with_precision(item.quantity_remaining, precision: 0) %></td>
         <td><%= number_with_precision(item.quantity_total,precision: 0) %></td>
-        <td><%= link_to "Rent", rent_item_path_url(item.id) %></td> <%# Instead of checkout it will be a button that checks the item out %>
-        <td><%= item.price %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= link_to "Rent", rent_item_path_url(item.id) %></td>
       </tr>
     <% end %>
   </tbody>

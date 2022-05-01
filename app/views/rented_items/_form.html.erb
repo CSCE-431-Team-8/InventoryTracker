@@ -12,7 +12,12 @@
   <% end %>
   <div class="field">
     <%= f.label :organization %><br>
-    <%= f.collection_select :organization_id, Organization.all, :id, :name, prompt: true %>
+    <% if  User.find_by_id(session[:user_id]).memberships.where(admin: true, organization: @rented_item.organization).exists? %>
+      <%= f.collection_select :organization_id, Organization.where(id: User.find_by_id(session[:user_id]).memberships.where(admin: true).select("organization_id")), :id, :name, prompt: true %>
+    <% else %>
+      <%= f.hidden_field :organization %>
+      <%= f.label @rented_item.organization.name %>
+    <% end %>
   </div>
   <%= f.hidden_field :item_id %>
   <div class="field">
